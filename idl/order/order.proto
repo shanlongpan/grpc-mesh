@@ -1,0 +1,48 @@
+syntax = "proto3";
+package order;
+option go_package = "grpc/order";
+
+import "idl/google/api/annotations.proto";
+service OrderService {
+  rpc Create (CreateOrderReq) returns (CreateOrderResp) {
+    option (google.api.http) = {
+      post: "/v1/order"
+      body: "order"
+    };
+  }
+  rpc Read (ReadOrderReq) returns (ReadOrderResp) {
+    option (google.api.http) = {
+      get: "/v1/order/{id}"
+    };
+  }
+}
+message Product {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  int32 price = 4;
+}
+
+message Order {
+  int64 id = 1;
+  string name = 2;
+  int64 date = 3;
+  repeated Product products = 4;
+  string ip = 5;
+}
+
+message CreateOrderReq {
+  Order order = 1;
+}
+
+message CreateOrderResp {
+  int64 id = 1;
+}
+
+message ReadOrderReq {
+  int64 id = 1;
+}
+
+message ReadOrderResp {
+  Order order = 1;
+}

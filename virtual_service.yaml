@@ -1,0 +1,18 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: echo-weights
+  namespace: echo-grpc
+spec:
+  hosts:
+    - grpc-mesh
+  http:
+    - route:
+        - destination:
+            host: grpc-mesh
+            subset: v1
+          weight: 20
+        - destination:
+            host: grpc-mesh
+            subset: v2
+          weight: 80
