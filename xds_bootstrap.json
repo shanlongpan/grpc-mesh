@@ -1,0 +1,15 @@
+{
+  "xds_servers": [
+    {
+      "server_uri": "istiod.istio-system.svc:15012",
+      "channel_creds": [{"type": "insecure"}],
+      "server_features": ["xds_v3"]
+    }
+  ],
+  "node": {
+    "id": "anything",
+    "locality": {
+      "zone" : "k8s"
+    }
+  }
+}

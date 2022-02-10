@@ -11,7 +11,7 @@ spec:
   type: ClusterIP
   ports:
     - name: http
-      port: 80
+      port: 8080
       targetPort: 18080
     - name: grpc
       port: 7070
@@ -39,8 +39,8 @@ spec:
     spec:
       containers:
         - image: shanlongpan/grpc-mesh:1.1
-          imagePullPolicy: Always
-          name: app
+          imagePullPolicy: IfNotPresent
+          name: grpc-mesh
           ports:
             - containerPort: 17070
               protocol: TCP
@@ -57,7 +57,7 @@ spec:
   selector:
     matchLabels:
       app: grpc-mesh
-      version: v1
+      version: v2
   template:
     metadata:
       annotations:
@@ -65,12 +65,12 @@ spec:
         proxy.istio.io/config: '{"holdApplicationUntilProxyStarts": true}'
       labels:
         app: grpc-mesh
-        version: v1
+        version: v2
     spec:
       containers:
         - image: shanlongpan/grpc-mesh:1.1
-          imagePullPolicy: Always
-          name: app
+          imagePullPolicy: IfNotPresent
+          name: grpc-mesh
           ports:
             - containerPort: 17070
               protocol: TCP

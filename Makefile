@@ -14,3 +14,5 @@ docker:
 .PHONY: docker-push
 docker-push:
 	docker push shanlongpan/grpc-mesh:1.1
+docker-image-tar:
+	docker save shanlongpan/grpc-mesh:1.1>grpc-mesh.tar

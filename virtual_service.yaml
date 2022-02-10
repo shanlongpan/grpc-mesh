@@ -5,14 +5,14 @@ metadata:
   namespace: echo-grpc
 spec:
   hosts:
-    - grpc-mesh
+    - grpc-mesh.echo-grpc.svc.cluster.local
   http:
     - route:
         - destination:
-            host: grpc-mesh
+            host: grpc-mesh.echo-grpc.svc.cluster.local
             subset: v1
           weight: 20
         - destination:
-            host: grpc-mesh
+            host: grpc-mesh.echo-grpc.svc.cluster.local
             subset: v2
           weight: 80
